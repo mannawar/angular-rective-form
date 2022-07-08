@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  signupForm: FormGroup;
+  projectForm: FormGroup;
   forbiddenProjects = [
     'Test', 'Dev', 'Project1', 'test'
   ]
 
   ngOnInit() {
-    this.signupForm = new FormGroup({
+    this.projectForm = new FormGroup({
       'projectData': new FormGroup({
         'projectname': new FormControl(null, Validators.required, this.forbiddenProj.bind(this)),
         'email': new FormControl(null, [Validators.required, Validators.email])
-      })
+      }),
+      'projectStatus': new FormControl('critical')
     })
   }
 
@@ -38,6 +39,6 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm)
+    console.log(this.projectForm)
   }
 }
